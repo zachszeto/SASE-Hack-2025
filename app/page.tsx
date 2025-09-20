@@ -49,7 +49,7 @@ export default function HomePage() {
       </header>
 
       {/* Hero Section: text left, stacked deck carousel right */}
-      <section className="min-h-[80vh] md:min-h-screen flex items-center py-16 md:py-20 px-4">
+      <section className="min-h-[80vh] md:min-h-screen flex items-center py-16 md:py-20 px-4 -mt-8 md:-mt-12">
         <div className="container mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-center">
             {/* Left: Text and actions */}
