@@ -8,16 +8,17 @@ export default function Header() {
   return (
     <header className="border-b bg-white/80 backdrop-blur-sm sticky top-0 z-50">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-        {/* Brand */}
+        {/* Brand (clickable logo → home) */}
         <div className="flex items-center gap-2">
-          <Image
-            src="/logo-white.svg"
-            alt="BroadCast Logo"
-            width={20}
-            height={20}
-            className="w-12 h-12 invert"
-            color="white"
-          />
+          <Link href="/" aria-label="Go to home" className="inline-flex items-center">
+            <Image
+              src="/logo-white.svg"
+              alt="BroadCast Logo"
+              width={20}
+              height={20}
+              className="w-12 h-12 invert"
+            />
+          </Link>
           <span className="text-xl font-bold text-gray-900">BroadCast</span>
         </div>
 
