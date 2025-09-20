@@ -1,10 +1,11 @@
 "use client"
-
+import Header from "@/components/ui/header"
 import { useEffect, useMemo, useRef, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { MapPin, Star, Users, Briefcase, Camera, TrendingUp, Search } from "lucide-react"
+import { MapPin, Star, Users, Briefcase, TrendingUp, Search } from "lucide-react"
+import Image from "next/image"
 import Link from "next/link"
 import { Input } from "@/components/ui/input"
 
@@ -27,26 +28,7 @@ export default function HomePage() {
         .initial-hidden { opacity: 0; }
       `}</style>
 
-      {/* Header */}
-      <header className="border-b bg-white/80 backdrop-blur-sm sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-orange-500 rounded-lg flex items-center justify-center">
-              <Camera className="w-5 h-5 text-white" />
-            </div>
-            <span className="text-xl font-bold text-gray-900">LocalCollab</span>
-          </div>
-          <nav className="hidden md:flex items-center gap-6">
-            <Link href="/marketplace" className="text-gray-600 hover:text-blue-600 transition-colors">Browse Gigs</Link>
-            <Link href="/business" className="text-gray-600 hover:text-blue-600 transition-colors">For Businesses</Link>
-            <Link href="/creators" className="text-gray-600 hover:text-blue-600 transition-colors">For Creators</Link>
-          </nav>
-          <div className="flex items-center gap-3">
-            <Button variant="ghost" asChild><Link href="/login">Sign In</Link></Button>
-            <Button asChild><Link href="/signup">Get Started</Link></Button>
-          </div>
-        </div>
-      </header>
+      <Header/>
 
       {/* Hero Section: text left, stacked deck carousel right */}
       <section className="min-h-[80vh] md:min-h-screen flex items-center py-16 md:py-20 px-4 -mt-8 md:-mt-12">
@@ -220,13 +202,18 @@ export default function HomePage() {
             Join thousands of businesses and creators already making authentic connections
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="secondary" asChild>
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-white text-white hover:bg-white hover:text-black bg-transparent"
+              asChild
+            >
               <Link href="/business">I'm a Business</Link>
             </Button>
             <Button
               size="lg"
               variant="outline"
-              className="border-white text-white hover:bg-white hover:text-blue-600 bg-transparent"
+              className="border-white text-white hover:bg-white hover:text-black bg-transparent"
               asChild
             >
               <Link href="/creators">I'm a Creator</Link>
@@ -240,11 +227,16 @@ export default function HomePage() {
         <div className="container mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
-              <div className="flex items-center gap-2 mb-4">
-                <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-orange-500 rounded-lg flex items-center justify-center">
-                  <Camera className="w-5 h-5 text-white" />
-                </div>
-                <span className="text-xl font-bold">LocalCollab</span>
+              <div className="flex items-center gap-2">
+                <Image
+                  src="logo-white.svg"
+                  alt="BroadCast Logo"
+                  width={20}
+                  height={20}
+                  className="w-12 h-12"
+                  color="white"
+                />
+                <span className="text-xl font-bold text-white">BroadCast</span>
               </div>
               <p className="text-gray-400 text-sm">
                 Connecting local businesses with talented content creators for authentic collaborations.
@@ -276,7 +268,7 @@ export default function HomePage() {
             </div>
           </div>
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-sm text-gray-400">
-            <p>&copy; 2024 LocalCollab. All rights reserved.</p>
+            <p>&copy; 2025 Broadcast. All rights reserved.</p>
           </div>
         </div>
       </footer>
