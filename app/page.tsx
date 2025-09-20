@@ -1,12 +1,46 @@
+"use client"
+
+import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { MapPin, Star, Users, Briefcase, Camera, TrendingUp } from "lucide-react"
+import { MapPin, Star, Users, Briefcase, Camera, TrendingUp, Search } from "lucide-react"
 import Link from "next/link"
+import { Input } from "@/components/ui/input"
 
 export default function HomePage() {
+  const [isLoaded, setIsLoaded] = useState(false)
+
+  useEffect(() => {
+    // Flip on after mount to trigger animations
+    setIsLoaded(true)
+  }, [])
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-orange-50">
+      {/* Animation styles */}
+      <style jsx>{`
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .animate-fade-in-up {
+          animation: fadeInUp 1.5s ease-out forwards;
+          /* forwards = persist final keyframe after play; combined with initial hidden prevents "jump" */
+        }
+
+        .initial-hidden {
+          opacity: 0;
+        }
+      `}</style>
+
       {/* Header */}
       <header className="border-b bg-white/80 backdrop-blur-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
@@ -39,28 +73,57 @@ export default function HomePage() {
       </header>
 
       {/* Hero Section */}
-      <section className="py-20 px-4">
+      <section className="min-h-screen flex flex-col justify-center py-20 px-4">
         <div className="container mx-auto text-center max-w-4xl">
-          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 text-balance">
+          <h1
+            className={`text-5xl md:text-6xl font-bold text-gray-900 mb-6 text-balance transition-all duration-1000 ${
+              isLoaded ? "animate-fade-in-up [animation-delay:0ms]" : "initial-hidden"
+            }`}
+          >
             Connect Local Businesses with
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-orange-500">
               {" "}
               Content Creators
             </span>
           </h1>
-          <p className="text-xl text-gray-600 mb-8 text-pretty max-w-2xl mx-auto">
+
+          <p
+            className={`text-xl text-gray-600 mb-8 text-pretty max-w-2xl mx-auto transition-all duration-1000 ${
+              isLoaded ? "animate-fade-in-up [animation-delay:200ms]" : "initial-hidden"
+            }`}
+          >
             The marketplace where mom & pop shops meet talented creators. Get authentic content that drives real results
             for your local business.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+
+          {/* Search bar wrapper with real animation delay via arbitrary property */}
+          <div
+            className={`max-w-md mx-auto mb-8 transition-all duration-[1500ms] ${
+              isLoaded ? "animate-fade-in-up [animation-delay:400ms]" : "initial-hidden"
+            }`}
+          >
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+              <Input
+                placeholder="Search by location (e.g., Seattle, Austin, LA)"
+                className="pl-10 pr-4 py-3 text-lg border-2 border-gray-200 focus:border-blue-500 rounded-xl shadow-sm"
+              />
+            </div>
+          </div>
+
+          <div
+            className={`flex flex-col sm:flex-row gap-4 justify-center transition-all duration-1000 ${
+              isLoaded ? "animate-fade-in-up [animation-delay:600ms]" : "initial-hidden"
+            }`}
+          >
             <Button
               size="lg"
-              className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800"
+              className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 transform hover:scale-105 transition-all duration-200"
               asChild
             >
               <Link href="/marketplace">Browse Opportunities</Link>
             </Button>
-            <Button size="lg" variant="outline" asChild>
+            <Button size="lg" variant="outline" className="transform hover:scale-105 transition-all duration-200" asChild>
               <Link href="/business">Post a Gig</Link>
             </Button>
           </div>
@@ -333,39 +396,15 @@ const featuredGigs = [
 ]
 
 const businessSteps = [
-  {
-    title: "Post Your Gig",
-    description: "Describe your collaboration needs, set your budget, and specify deliverables.",
-  },
-  {
-    title: "Review Applications",
-    description: "Browse creator profiles, portfolios, and proposals to find the perfect match.",
-  },
-  {
-    title: "Collaborate & Create",
-    description: "Work directly with your chosen creator to bring your vision to life.",
-  },
-  {
-    title: "Get Results",
-    description: "Receive high-quality content and watch your engagement grow.",
-  },
+  { title: "Post Your Gig", description: "Describe your collaboration needs, set your budget, and specify deliverables." },
+  { title: "Review Applications", description: "Browse creator profiles, portfolios, and proposals to find the perfect match." },
+  { title: "Collaborate & Create", description: "Work directly with your chosen creator to bring your vision to life." },
+  { title: "Get Results", description: "Receive high-quality content and watch your engagement grow." },
 ]
 
 const creatorSteps = [
-  {
-    title: "Browse Opportunities",
-    description: "Explore gigs in your area that match your skills and interests.",
-  },
-  {
-    title: "Submit Proposals",
-    description: "Apply to gigs with your portfolio and creative ideas.",
-  },
-  {
-    title: "Create Content",
-    description: "Work with businesses to create authentic, engaging content.",
-  },
-  {
-    title: "Get Paid & Build Reputation",
-    description: "Earn money and build your portfolio with successful collaborations.",
-  },
+  { title: "Browse Opportunities", description: "Explore gigs in your area that match your skills and interests." },
+  { title: "Submit Proposals", description: "Apply to gigs with your portfolio and creative ideas." },
+  { title: "Create Content", description: "Work with businesses to create authentic, engaging content." },
+  { title: "Get Paid & Build Reputation", description: "Earn money and build your portfolio with successful collaborations." },
 ]
