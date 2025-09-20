@@ -205,7 +205,13 @@ export default function CreatorProfile() {
                     <span className="text-sm font-medium">{mockCreatorData.followers.instagram}</span>
                   </div>
                   <div className="flex items-center gap-1">
-                    <Camera className="w-4 h-4 text-black" />
+                    <Image
+                      src="/tiktok.svg"
+                      alt="TikTok Logo"
+                      width={16} // 4 * 4px = 16px to match previous size
+                      height={16}
+                      className="w-4 h-4"
+                    />
                     <span className="text-sm font-medium">{mockCreatorData.followers.tiktok}</span>
                   </div>
                   <div className="flex items-center gap-1">
@@ -524,9 +530,8 @@ export default function CreatorProfile() {
                         {[...Array(5)].map((_, i) => (
                           <Star
                             key={i}
-                            className={`w-4 h-4 ${
-                              i < review.rating ? "text-yellow-400 fill-current" : "text-gray-300"
-                            }`}
+                            className={`w-4 h-4 ${i < review.rating ? "text-yellow-400 fill-current" : "text-gray-300"
+                              }`}
                           />
                         ))}
                       </div>
