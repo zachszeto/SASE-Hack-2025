@@ -34,7 +34,7 @@ export default function Header() {
             <div className="absolute left-0">
               <div className="h-3" />
               <div
-                className="w-56 rounded-lg border border-gray-200 bg-white/80 backdrop-blur-sm shadow-lg opacity-0 translate-y-1 transition-all duration-150
+                className="w-56 rounded-lg border border-gray-200 bg-white backdrop-blur-sm shadow-lg opacity-0 translate-y-1 transition-all duration-150
                            pointer-events-none
                            group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto"
                 role="menu"
@@ -83,7 +83,7 @@ export default function Header() {
             <div className="absolute left-0">
               <div className="h-3" />
               <div
-                className="w-56 rounded-lg border border-gray-200 bg-white/80 backdrop-blur-sm shadow-lg opacity-0 translate-y-1 transition-all duration-150
+                className="w-56 rounded-lg border border-gray-200 bg-white backdrop-blur-sm shadow-lg opacity-0 translate-y-1 transition-all duration-150
                            pointer-events-none
                            group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto"
                 role="menu"
