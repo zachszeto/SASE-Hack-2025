@@ -7,8 +7,8 @@ import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { MapPin, Star, Search, Filter, Heart, Share2 } from "lucide-react"
-import Link from "next/link"
-import Image from "next/image"
+import Header from "@/components/ui/header"
+
 
 export default function MarketplacePage() {
   const [searchTerm, setSearchTerm] = useState("")
@@ -27,32 +27,7 @@ export default function MarketplacePage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="border-b bg-white sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
-          <div className="flex items-center gap-2">
-            <Image
-              src="logo-white.svg"
-              alt="BroadCast Logo"
-              width={20}
-              height={20}
-              className="w-12 h-12 invert"
-              color="white"
-            />
-            <span className="text-xl font-bold text-gray-900">BroadCast</span>
-          </div>
-          </Link>
-          <div className="flex items-center gap-3">
-            <Button variant="ghost" asChild>
-              <Link href="/login">Sign In</Link>
-            </Button>
-            <Button asChild>
-              <Link href="/signup">Get Started</Link>
-            </Button>
-          </div>
-        </div>
-      </header>
+      <Header/>
 
       <div className="container mx-auto px-4 py-8">
         {/* Page Header */}
