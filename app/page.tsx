@@ -342,10 +342,10 @@ export default function HomePage() {
                   alt="BroadCast Logo"
                   width={20}
                   height={20}
-                  className="w-12 h-12 invert"
+                  className="w-12 h-12"
                   color="white"
                 />
-                <span className="text-xl font-bold text-gray-900">BroadCast</span>
+                <span className="text-xl font-bold text-white">BroadCast</span>
               </div>
               <p className="text-gray-400 text-sm">
                 Connecting local businesses with talented content creators for authentic collaborations.
