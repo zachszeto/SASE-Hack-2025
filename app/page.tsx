@@ -311,13 +311,18 @@ export default function HomePage() {
             Join thousands of businesses and creators already making authentic connections
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="secondary" asChild>
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-white text-white hover:bg-white hover:text-black bg-transparent"
+              asChild
+            >
               <Link href="/business">I'm a Business</Link>
             </Button>
             <Button
               size="lg"
               variant="outline"
-              className="border-white text-white hover:bg-white hover:text-blue-600 bg-transparent"
+              className="border-white text-white hover:bg-white hover:text-black bg-transparent"
               asChild
             >
               <Link href="/creators">I'm a Creator</Link>
