@@ -62,7 +62,7 @@ export default function SignupPage() {
         <Card>
           <CardHeader className="text-center">
             <CardTitle className="text-2xl">Create your account</CardTitle>
-            <CardDescription>Join the LocalCollab community today</CardDescription>
+            <CardDescription>Join the Broadcast community today</CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
             {/* User Type Selection */}
