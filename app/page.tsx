@@ -82,6 +82,15 @@ export default function HomePage() {
                         Post a Gig
                       </Link>
                     </li>
+                    <li>
+                      <Link
+                        href="/business/dashboard"
+                        className="block px-4 py-2 text-gray-700 hover:bg-gray-50/60 hover:text-blue-600 transition-colors"
+                        role="menuitem"
+                      >
+                        Dashboard
+                      </Link>
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -106,7 +115,7 @@ export default function HomePage() {
                   <ul className="py-2">
                     <li>
                       <Link
-                        href="/profile"
+                        href="/creators/profile"
                         className="block px-4 py-2 text-gray-700 hover:bg-gray-50/60 hover:text-blue-600 transition-colors"
                         role="menuitem"
                       >
