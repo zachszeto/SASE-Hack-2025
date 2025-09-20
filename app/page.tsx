@@ -4,7 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { MapPin, Star, Users, Briefcase, Camera, TrendingUp, Search } from "lucide-react"
+import { MapPin, Star, Users, Briefcase, TrendingUp, Search } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { Input } from "@/components/ui/input"
@@ -246,11 +246,16 @@ export default function HomePage() {
         <div className="container mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
-              <div className="flex items-center gap-2 mb-4">
-                <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-orange-500 rounded-lg flex items-center justify-center">
-                  <Camera className="w-5 h-5 text-white" />
-                </div>
-                <span className="text-xl font-bold">LocalCollab</span>
+              <div className="flex items-center gap-2">
+                <Image
+                  src="logo-white.svg"
+                  alt="BroadCast Logo"
+                  width={20}
+                  height={20}
+                  className="w-12 h-12 invert"
+                  color="white"
+                />
+                <span className="text-xl font-bold text-gray-900">BroadCast</span>
               </div>
               <p className="text-gray-400 text-sm">
                 Connecting local businesses with talented content creators for authentic collaborations.

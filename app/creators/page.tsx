@@ -7,8 +7,9 @@ import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Camera, MapPin, Star, TrendingUp, Instagram, Youtube, Search, Filter } from "lucide-react"
+import { MapPin, Star, TrendingUp, Instagram, Youtube, Search, Filter } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 
 export default function CreatorsPage() {
   const [searchTerm, setSearchTerm] = useState("")
@@ -31,10 +32,17 @@ export default function CreatorsPage() {
       <header className="border-b bg-white sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-orange-500 rounded-lg flex items-center justify-center">
-              <Camera className="w-5 h-5 text-white" />
-            </div>
-            <span className="text-xl font-bold text-gray-900">LocalCollab</span>
+          <div className="flex items-center gap-2">
+            <Image
+              src="logo-white.svg"
+              alt="BroadCast Logo"
+              width={20}
+              height={20}
+              className="w-12 h-12 invert"
+              color="white"
+            />
+            <span className="text-xl font-bold text-gray-900">BroadCast</span>
+          </div>
           </Link>
           <div className="flex items-center gap-3">
             <Button variant="ghost" asChild>

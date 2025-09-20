@@ -9,9 +9,10 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Separator } from "@/components/ui/separator"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Camera, Eye, EyeOff, User, Building } from "lucide-react"
+import { Eye, EyeOff, User, Building } from "lucide-react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
+import Image from "next/image"
 
 export default function SignupPage() {
   const [showPassword, setShowPassword] = useState(false)
@@ -44,10 +45,17 @@ export default function SignupPage() {
         {/* Logo */}
         <div className="text-center mb-8">
           <Link href="/" className="inline-flex items-center gap-2">
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-orange-500 rounded-lg flex items-center justify-center">
-              <Camera className="w-6 h-6 text-white" />
-            </div>
-            <span className="text-2xl font-bold text-gray-900">LocalCollab</span>
+          <div className="flex items-center gap-2">
+            <Image
+              src="logo-white.svg"
+              alt="BroadCast Logo"
+              width={20}
+              height={20}
+              className="w-12 h-12 invert"
+              color="white"
+            />
+            <span className="text-xl font-bold text-gray-900">BroadCast</span>
+          </div>
           </Link>
         </div>
 
