@@ -346,7 +346,7 @@ function HeroSlidesStacked() {
   return (
     <div className="relative h-[320px] sm:h-[380px] md:h-[440px] lg:h-[520px] select-none overflow-visible" aria-roledescription="carousel" aria-live="polite">
       {/* Minimal arrows */}
-      <button
+      {/* <button
         aria-label="Previous"
         className="absolute left-2 top-1/2 -translate-y-1/2 z-30 h-9 w-9 rounded-full bg-black/35 hover:bg-black/50 text-white grid place-items-center"
         onClick={() => requestFlip("prev")}
@@ -359,7 +359,7 @@ function HeroSlidesStacked() {
         onClick={() => requestFlip("next")}
       >
         ›
-      </button>
+      </button> */}
 
       <div className="absolute inset-0 flex items-center justify-center overflow-visible">
         <CardLayer key={`back-${order[2]}-${animKey}`} img={HERO_IMAGES[order[2]]} depth="back" dir={animDir} />
