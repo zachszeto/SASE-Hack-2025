@@ -41,6 +41,15 @@ export default function Header() {
                 aria-label="For Businesses"
               >
                 <ul className="py-2">
+                <li>
+                    <Link
+                      href="/business/dashboard"
+                      className="block px-4 py-2 text-gray-700 hover:bg-gray-50/60 hover:text-blue-600 transition-colors"
+                      role="menuitem"
+                    >
+                      Business Dashboard
+                    </Link>
+                  </li>
                   <li>
                     <Link
                       href="/creators"
@@ -57,15 +66,6 @@ export default function Header() {
                       role="menuitem"
                     >
                       Post a Gig
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/business/dashboard"
-                      className="block px-4 py-2 text-gray-700 hover:bg-gray-50/60 hover:text-blue-600 transition-colors"
-                      role="menuitem"
-                    >
-                      Dashboard
                     </Link>
                   </li>
                 </ul>
@@ -96,7 +96,7 @@ export default function Header() {
                       className="block px-4 py-2 text-gray-700 hover:bg-gray-50/60 hover:text-blue-600 transition-colors"
                       role="menuitem"
                     >
-                      My Profile
+                      Creator Profile
                     </Link>
                   </li>
                   <li>
