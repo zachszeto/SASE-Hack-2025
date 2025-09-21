@@ -116,11 +116,11 @@ const creators: Creator[] = [
 
 const businesses: Business[] = [
   {
-    id: "biz-beacon-bites",
-    name: "Beacon Bites Café",
+    id: "biz-common-good",
+    name: "Common Good Co",
     category: "Café",
-    location: "Beacon Hill",
-    position: [42.3584, -71.0691],
+    location: "Waltham",
+    position: [42.3740, -71.2369],
     imageUrl: "/businesses/first.jpeg",
     tags: ["Food & Drink", "Cozy Vibes"],
     pinSize: "sm",
