@@ -55,7 +55,7 @@ export default function HomePage() {
               {/* Single CTA */}
               <div className={`mt-8 flex gap-4 transition-all duration-1000 ${isLoaded ? "animate-fade-in-up [animation-delay:600ms]" : "initial-hidden"}`}>
                 <Button size="lg" className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 transform hover:scale-105 transition-all duration-200" asChild>
-                  <Link href="/signup">Get Started</Link>
+                  <Link href="/map">Get Started</Link>
                 </Button>
               </div>
             </div>
