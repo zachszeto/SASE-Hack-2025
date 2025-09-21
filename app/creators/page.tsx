@@ -154,19 +154,37 @@ export default function CreatorsPage() {
                 {/* Social Links */}
                 <div className="flex justify-center gap-2">
                   {creator.socialLinks.instagram && (
-                    <Button size="sm" variant="outline" className="p-2 bg-transparent">
-                      <Instagram className="w-4 h-4" />
-                    </Button>
+                    <a
+                      href={creator.socialLinks.instagram}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Button size="sm" variant="outline" className="p-2 bg-transparent">
+                        <Instagram className="w-4 h-4" />
+                      </Button>
+                    </a>
                   )}
                   {creator.socialLinks.youtube && (
-                    <Button size="sm" variant="outline" className="p-2 bg-transparent">
-                      <Youtube className="w-4 h-4" />
-                    </Button>
+                    <a
+                      href={creator.socialLinks.youtube}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Button size="sm" variant="outline" className="p-2 bg-transparent">
+                        <Youtube className="w-4 h-4" />
+                      </Button>
+                    </a>
                   )}
                   {creator.socialLinks.tiktok && (
-                    <Button size="sm" variant="outline" className="p-2 bg-transparent">
-                      <TrendingUp className="w-4 h-4" />
-                    </Button>
+                    <a
+                      href={creator.socialLinks.tiktok}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Button size="sm" variant="outline" className="p-2 bg-transparent">
+                        <TrendingUp className="w-4 h-4" />
+                      </Button>
+                    </a>
                   )}
                 </div>
 
@@ -207,89 +225,89 @@ const mockCreators = [
     collaborations: 47,
     avatar: "/influencers/sesamyoilpfp.jpg",
     socialLinks: {
-      instagram: true,
-      youtube: true,
-      tiktok: false,
+      instagram: "https://www.instagram.com/sesamyoil/?hl=en", 
+      youtube: "https://www.youtube.com/@MoreBestEverFoodReviewShow",   
+      tiktok: "https://www.tiktok.com/@sesamyoil?lang=en",    
     },
   },
   {
     id: 2,
-    name: "Mike Chen",
+    name: "Zachary Szeto",
     location: "Austin, TX",
     bio: "Tech reviewer and photographer with a focus on innovative products and startup culture.",
     categories: ["Tech", "Photography"],
-    followers: "8.5K",
-    rating: 4.8,
+    followers: "8.9K",
+    rating: 4.1,
     collaborations: 23,
-    avatar: "/asian-man-tech-reviewer.jpg",
+    avatar: "/influencers/zachszeto.jpg",
     socialLinks: {
-      instagram: true,
-      youtube: true,
-      tiktok: true,
+      instagram: "d", 
+      youtube: "d",   
+      tiktok: "",    
     },
   },
   {
     id: 3,
-    name: "Emma Davis",
-    location: "Los Angeles, CA",
-    bio: "Fashion and beauty influencer helping brands connect with Gen Z through authentic storytelling.",
-    categories: ["Fashion", "Beauty"],
+    name: "Jasmine Huang",
+    location: "Waltham, MA",
+    bio: "Food & lifestyle content creator passionate about showcasing local businesses.",
+    categories: ["Fashion", "Lifestyle"],
     followers: "22.1K",
     rating: 5.0,
     collaborations: 89,
-    avatar: "/fashion-influencer-young-woman.png",
+    avatar: "/influencers/jasmine.jpg",
     socialLinks: {
-      instagram: true,
-      youtube: false,
-      tiktok: true,
+      instagram: "d", 
+      youtube: "",   
+      tiktok: "d",    
     },
   },
   {
     id: 4,
-    name: "Alex Rodriguez",
-    location: "Miami, FL",
-    bio: "Fitness coach and wellness advocate creating motivational content for active lifestyles.",
-    categories: ["Fitness", "Lifestyle"],
-    followers: "12.8K",
+    name: "Brandon Yeu",
+    location: "Hoboken, NJ",
+    bio: "Software engineering coach and music producer that loves to help others grow, both personally and professionally.",
+    categories: ["Music", "Tech", "Education"],
+    followers: "33.8K",
     rating: 4.7,
     collaborations: 34,
-    avatar: "/hispanic-man-fitness-trainer.jpg",
+    avatar: "/influencers/brandonyeu.png",
     socialLinks: {
-      instagram: true,
-      youtube: true,
-      tiktok: true,
+      instagram: "d", 
+      youtube: "s",   
+      tiktok: "s",    
     },
   },
   {
     id: 5,
-    name: "Jessica Kim",
+    name: "Sherry Lin",
     location: "New York, NY",
     bio: "Beauty guru and skincare enthusiast sharing honest reviews and tutorials with my community.",
     categories: ["Beauty", "Lifestyle"],
-    followers: "18.9K",
+    followers: "29.4K",
     rating: 4.9,
     collaborations: 56,
-    avatar: "/korean-woman-beauty-blogger.jpg",
+    avatar: "/influencers/sherrylin.jpg",
     socialLinks: {
-      instagram: true,
-      youtube: true,
-      tiktok: false,
+      instagram: "https://www.instagram.com/sherry_xoxo_15/", 
+      youtube: "",   
+      tiktok: "s",    
     },
   },
   {
     id: 6,
-    name: "David Thompson",
-    location: "Seattle, WA",
+    name: "Long Nguyen",
+    location: "Timbuctu, TX",
     bio: "Local food enthusiast and photographer documenting the Pacific Northwest culinary scene.",
     categories: ["Food & Drink", "Photography"],
-    followers: "9.3K",
+    followers: "4.1K",
     rating: 4.6,
     collaborations: 28,
-    avatar: "/bearded-man-food-photographer.jpg",
+    avatar: "/influencers/longnguyen.jpeg",
     socialLinks: {
-      instagram: true,
-      youtube: false,
-      tiktok: false,
+      instagram: "", 
+      youtube: "d",   
+      tiktok: "d",    
     },
   },
 ]
