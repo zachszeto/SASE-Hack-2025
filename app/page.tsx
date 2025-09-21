@@ -19,8 +19,8 @@ const heroPins = [
   { src: "/influencers/adrizzy.png", alt: "Creator filming" },
   { src: "/businesses/seventh.png", alt: "Late night pizza" },
   { src: "/influencers/sherry.png", alt: "Fashion mirror shot" },
+  { src: "/businesses/eighth.jpg", alt: "Campus hangout" },
   { src: "/influencers/jasmine.jpg", alt: "Wellness studio" },
-  { src: "/influencers/eighth.jpg", alt: "Campus hangout" },
 ]
 
 const featuredBoards = [
