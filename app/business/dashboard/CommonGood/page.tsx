@@ -40,18 +40,18 @@ const company = {
 const openGigs = [
   {
     id: 999,
-    title: "TikTok for STEM Connect Career Fair",
+    title: "TikTok for New Seasonal Drink",
     budget: 400,
     applications: 0,
     posted: "Just now",
     deadline: "In 3 days",
-    category: "Tech",
+    category: "Food & Drink",
     type: "Short-form video",
     location: "On-site",
   },
   {
     id: 1,
-    title: "Instagram Reel for Tea Shop",
+    title: "Instagram Reel for New Apple Pie",
     budget: 150,
     applications: 8,
     posted: "2 days ago",

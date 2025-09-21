@@ -2,6 +2,9 @@
 
 import { useMemo, useState, useEffect, useCallback } from "react"
 import dynamic from "next/dynamic"
+import { Card, CardContent } from "@/components/ui/card"
+import { Checkbox } from "@/components/ui/checkbox"
+import { Label } from "@/components/ui/label"
 
 type Coordinate = [number, number]
 
@@ -120,7 +123,7 @@ const businesses: Business[] = [
     name: "Common Good Co",
     category: "Café",
     location: "Waltham",
-    position: [42.3740, -71.2369],
+    position: [42.374, -71.2369],
     imageUrl: "/businesses/first.jpeg",
     tags: ["Food & Drink", "Cozy Vibes"],
     pinSize: "sm",
@@ -216,8 +219,9 @@ const businesses: Business[] = [
     pinSize: "md",
   },
 ]
+
 const isLoggedIn = false
-const userRole: Role = "guest" 
+const userRole: Role = "guest"
 
 const LeafletMap = dynamic(() => import("./leaflet-map"), {
   ssr: false,
@@ -237,6 +241,8 @@ export default function MapView() {
   const [selectedPointId, setSelectedPointId] = useState<string | null>(null)
   const [hoveredPointId, setHoveredPointId] = useState<string | null>(null)
   const [isClient, setIsClient] = useState(false)
+  const [showCreators, setShowCreators] = useState(true)
+  const [showBusinesses, setShowBusinesses] = useState(true)
 
   useEffect(() => {
     setIsClient(true)
@@ -247,47 +253,63 @@ export default function MapView() {
       ...creators.map((item) => ({ ...item, kind: "creator" as const })),
       ...businesses.map((item) => ({ ...item, kind: "business" as const })),
     ],
-    [],
+    []
   )
 
   const roleFilteredPoints = useMemo(() => {
     if (role === "guest") {
       return allPoints
     }
-
     if (role === "business") {
       return allPoints.filter((point) => point.kind === "creator")
     }
-
     return allPoints.filter((point) => point.kind === "business")
   }, [allPoints, role])
 
+  // ✅ Now includes legend + theme filters
   const visiblePoints: MapPoint[] = useMemo(() => {
-    if (selectedTheme === "All") {
-      return roleFilteredPoints
+    let points = roleFilteredPoints.filter((point) => {
+      if (point.kind === "creator" && !showCreators) return false
+      if (point.kind === "business" && !showBusinesses) return false
+      return true
+    })
+
+    if (selectedTheme !== "All") {
+      points = points.filter((point) => point.tags.includes(selectedTheme))
     }
 
-    return roleFilteredPoints.filter((point) => point.tags.includes(selectedTheme))
-  }, [roleFilteredPoints, selectedTheme])
+    return points
+  }, [roleFilteredPoints, showCreators, showBusinesses, selectedTheme])
 
   useEffect(() => {
-    if (selectedPointId && !visiblePoints.some((point) => point.id === selectedPointId)) {
+    if (selectedPointId && !visiblePoints.some((p) => p.id === selectedPointId)) {
       setSelectedPointId(null)
     }
   }, [visiblePoints, selectedPointId])
 
   useEffect(() => {
-    if (hoveredPointId && !visiblePoints.some((point) => point.id === hoveredPointId)) {
+    if (hoveredPointId && !visiblePoints.some((p) => p.id === hoveredPointId)) {
       setHoveredPointId(null)
     }
   }, [visiblePoints, hoveredPointId])
+
+  useEffect(() => {
+    console.log("Legend state:", { showCreators, showBusinesses })
+  }, [showCreators, showBusinesses])
+
+  useEffect(() => {
+    console.log(
+      "visiblePoints (count):",
+      visiblePoints.length,
+      visiblePoints.map((p) => ({ id: p.id, kind: p.kind }))
+    )
+  }, [visiblePoints])
 
   const handlePointAction = useCallback((point: MapPoint) => {
     if (!isLoggedIn && typeof window !== "undefined") {
       window.location.href = "/login"
       return
     }
-
     setSelectedPointId(point.id)
   }, [])
 
@@ -312,6 +334,40 @@ export default function MapView() {
 
   return (
     <main className="relative h-screen w-full">
+      {/* Legend */}
+      <Card className="absolute bottom-24 left-4 w-56 h-38 shadow-lg z-[9999]">
+        <CardContent className="flex flex-col items-center gap-4">
+          {/* Legend Title */}
+          <h2 className="text-lg font-semibold text-center">Legend</h2>
+
+          {/* Creators */}
+          <div className="flex items-center gap-3 w-full justify-start">
+            <Checkbox
+              id="show-creators"
+              checked={showCreators}
+              onCheckedChange={(checked) => setShowCreators(!!checked)}
+            />
+            <Label htmlFor="show-creators" className="text-base font-medium">
+              Show Creators
+            </Label>
+          </div>
+
+          {/* Businesses */}
+          <div className="flex items-center gap-3 w-full justify-start">
+            <Checkbox
+              id="show-businesses"
+              checked={showBusinesses}
+              onCheckedChange={(checked) => setShowBusinesses(!!checked)}
+            />
+            <Label htmlFor="show-businesses" className="text-base font-medium">
+              Show Businesses
+            </Label>
+          </div>
+        </CardContent>
+      </Card>
+
+
+      {/* Map */}
       <LeafletMap
         center={center}
         visiblePoints={visiblePoints}

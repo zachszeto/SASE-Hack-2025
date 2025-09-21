@@ -124,7 +124,7 @@ export default function LeafletMap({
   const handleMapReady = useCallback((map: L.Map) => {
     mapRef.current = map
   }, [])
-
+  
   useEffect(() => {
     if (!mapRef.current || typeof window === "undefined") {
       return
@@ -151,6 +151,10 @@ export default function LeafletMap({
       tilePane?.classList.remove("tile-pane-muted")
     }
   }, [])
+
+  useEffect(() => {
+    console.log("LeafletMap received visiblePoints:", visiblePoints.map(p => ({ id: p.id, kind: p.kind })))
+  }, [visiblePoints])
 
   useEffect(() => {
     if (!mapRef.current) return
