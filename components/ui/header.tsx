@@ -129,7 +129,7 @@ export default function Header() {
           <Link
             href="/creators/profile"
             aria-label="Open profile"
-            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/80 bg-white/90 text-rose-400 shadow-sm transition hover:border-rose-200 hover:text-rose-500"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/80 bg-white/90 text-black-400 shadow-sm transition hover:border-rose-200 hover:text-black-500"
           >
             <User className="h-4 w-4" />
           </Link>

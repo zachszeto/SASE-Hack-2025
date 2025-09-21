@@ -156,9 +156,13 @@ export default function MarketplacePage() {
                       <div className="text-lg font-bold text-green-600">{gig.reward}</div>
                       <div className="text-xs text-gray-500">{gig.type}</div>
                     </div>
-                    <Button size="sm" className="bg-gradient-to-r from-blue-600 to-blue-700">
-                      Apply Now
-                    </Button>
+                   <Button
+                    size="sm"
+                    className="bg-[#FF255A] hover:bg-[#e01f4e] text-white"
+                  >
+                    Apply Now
+                  </Button>
+
                   </div>
                 </div>
               </CardContent>

@@ -10,6 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Badge } from "@/components/ui/badge"
 import { Plus, Calendar, Users, Star, TrendingUp } from "lucide-react"
 import Header from "@/components/ui/header"
+import Link from "next/link"
 
 export default function BusinessPage() {
   // If you still need any local state for the form, keep it here
@@ -158,7 +159,9 @@ export default function BusinessPage() {
                 </div>
               </div>
 
-              <Button className="w-full bg-gradient-to-r from-blue-600 to-blue-700">Post Gig</Button>
+              <Button className="w-full bg-[#FF255A] hover:bg-[#e01f4e]">
+                <Link href="/marketplace">Post Gig</Link>
+              </Button>
             </CardContent>
           </Card>
         </div>
