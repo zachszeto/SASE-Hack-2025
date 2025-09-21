@@ -15,14 +15,12 @@ const INTERVAL_MS = 4500
 
 /* ---------- Pinterest Data ---------- */
 const heroPins = [
-  { src: "/businesses/first.jpeg", alt: "Café flat lay" },
-  { src: "/influencers/adrizzy.jpeg", alt: "Creator filming" },
-  { src: "/businesses/second.jpeg", alt: "Seaport dinner" },
+  { src: "/businesses/fifth.webp", alt: "Café flat lay" },
+  { src: "/influencers/adrizzy.png", alt: "Creator filming" },
+  { src: "/businesses/seventh.png", alt: "Late night pizza" },
   { src: "/influencers/sherry.png", alt: "Fashion mirror shot" },
-  { src: "/businesses/fourth.jpeg", alt: "North End pasta" },
   { src: "/influencers/jasmine.jpg", alt: "Wellness studio" },
-  { src: "/businesses/seventh.avif", alt: "Late night pizza" },
-  { src: "/influencers/me.jpg", alt: "Campus hangout" },
+  { src: "/influencers/eighth.jpg", alt: "Campus hangout" },
 ]
 
 const featuredBoards = [
@@ -41,7 +39,7 @@ const featuredBoards = [
   {
     title: "Night bites trail",
     subtitle: "Tacos, late-night slices, and hidden speakeasies captured by locals",
-    image: "/businesses/seventh.avif",
+    image: "/businesses/seventh.png",
     accent: "from-purple-400/10 via-sky-300/10 to-white",
   },
   {
@@ -59,7 +57,7 @@ const colorStories = [
     body:
       "Premium subscriptions, ad blockers, and templated influencer spots make old-school marketing invisible. We let corner shops tap the voices classmates, coworkers, and neighbors already follow.",
     action: { label: "See it on the map", href: "/map" },
-    collage: ["/businesses/fourth.jpeg", "/businesses/second.jpeg", "/influencers/adrizzy.jpeg"],
+    collage: ["/businesses/fourth.jpeg", "/businesses/second.jpeg", "/influencers/adrizzy.png"],
     backdrop: "bg-[#fff4cc]",
     accent: "text-[#b73c19]",
   },
