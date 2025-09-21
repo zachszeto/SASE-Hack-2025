@@ -193,7 +193,10 @@ export default function CreatorsPage() {
                   <Button variant="outline" size="sm" className="flex-1 bg-transparent" asChild>
                     <Link href={`/creators/${creator.id}`}>View Profile</Link>
                   </Button>
-                  <Button size="sm" className="flex-1 bg-gradient-to-r from-blue-600 to-blue-700">
+                  <Button
+                    size="sm"
+                    className="flex-1 bg-[#FF255A] hover:bg-[#e01f4e] text-white"
+                  >
                     Contact
                   </Button>
                 </div>

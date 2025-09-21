@@ -15,12 +15,12 @@ const INTERVAL_MS = 4500
 
 /* ---------- Pinterest Data ---------- */
 const heroPins = [
-  { src: "/businesses/fifth.webp", alt: "Café flat lay" },
-  { src: "/influencers/adrizzy.png", alt: "Creator filming" },
-  { src: "/businesses/seventh.png", alt: "Late night pizza" },
-  { src: "/influencers/sherry.png", alt: "Fashion mirror shot" },
-  { src: "/businesses/eighth.jpg", alt: "Campus hangout" },
-  { src: "/influencers/jasmine.jpg", alt: "Wellness studio" },
+  { src: "/User4.png", alt: "Café flat lay" },
+  { src: "/User3.png", alt: "Creator filming" },
+  { src: "/User2.png", alt: "Late night pizza" },
+  { src: "/User1.png", alt: "Fashion mirror shot" },
+  //{ src: "/businesses/eighth.jpg", alt: "Campus hangout" },
+  //{ src: "/influencers/jasmine.jpg", alt: "Wellness studio" },
 ]
 
 const featuredBoards = [
@@ -241,6 +241,22 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#fff7f8] via-white to-[#f0f6ff] text-slate-900">
+      {/* Global keyframes for on-load animations */}
+      <style jsx global>{`
+        @keyframes fadeUp {
+          0% { opacity: 0; transform: translateY(12px); }
+          100% { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideIn {
+          0% { opacity: 0; transform: translateY(8px) scale(0.98); }
+          100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        @keyframes softPop {
+          0% { opacity: 0; transform: scale(0.96) rotate(-1deg); }
+          100% { opacity: 1; transform: scale(1) rotate(0deg); }
+        }
+      `}</style>
+
       <Header />
 
       {/* Hero Section */}
@@ -250,14 +266,22 @@ export default function HomePage() {
             {/* Left */}
             <div>
               <h1
-                className={`text-5xl md:text-6xl font-bold text-gray-900 mb-6 transition-all duration-1000 ${
-                  isLoaded ? "animate-fade-in-up" : "opacity-0"
+                className={`text-5xl md:text-6xl font-bold text-gray-900 mb-6 ${
+                  isLoaded
+                    ? "motion-safe:animate-[fadeUp_700ms_cubic-bezier(0.22,1,0.36,1)_forwards] motion-reduce:opacity-100 motion-reduce:translate-y-0"
+                    : "opacity-0"
                 }`}
               >
                 Connect Local Businesses with
-                <span className="text-[#FF255A]"> Content Creators</span>
+                <span className="text-[#FF255A]">{" "}Content Creators</span>
               </h1>
-              <div className="max-w-md">
+              <div
+                className={`max-w-md ${
+                  isLoaded
+                    ? "motion-safe:animate-[slideIn_650ms_300ms_cubic-bezier(0.22,1,0.36,1)_both] motion-reduce:opacity-100"
+                    : "opacity-0"
+                }`}
+              >
                 <div className="relative">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                   <Input
@@ -266,7 +290,14 @@ export default function HomePage() {
                   />
                 </div>
               </div>
-              <div className="mt-8 flex gap-4">
+
+              <div
+                className={`mt-8 flex gap-4 ${
+                  isLoaded
+                    ? "motion-safe:animate-[slideIn_600ms_500ms_cubic-bezier(0.22,1,0.36,1)_both] motion-reduce:opacity-100"
+                    : "opacity-0"
+                }`}
+              >
                 <Button
                   size="lg"
                   className="bg-[#FF255A] hover:bg-[#e01f4e] transform hover:scale-105 transition-all duration-200"
@@ -276,8 +307,15 @@ export default function HomePage() {
                 </Button>
               </div>
             </div>
+
             {/* Right */}
-            <div className="w-full">
+            <div
+              className={`w-full ${
+                isLoaded
+                  ? "motion-safe:animate-[softPop_700ms_250ms_cubic-bezier(0.16,1,0.3,1)_both] motion-reduce:opacity-100"
+                  : "opacity-0"
+              }`}
+            >
               <div className="relative rounded-2xl overflow-visible shadow-none px-16">
                 <HeroSlidesStacked />
               </div>
