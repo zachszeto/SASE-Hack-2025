@@ -56,7 +56,8 @@ const colorStories = [
   {
     eyebrow: "Traditional ads are tuned out",
     title: "Marketing hits different when it comes from people you recognize",
-    body: "Premium subscriptions, ad blockers, and templated influencer spots make old-school marketing invisible. We let corner shops tap the voices classmates, coworkers, and neighbors already follow.",
+    body:
+      "Premium subscriptions, ad blockers, and templated influencer spots make old-school marketing invisible. We let corner shops tap the voices classmates, coworkers, and neighbors already follow.",
     action: { label: "See it on the map", href: "/map" },
     collage: ["/businesses/fourth.jpeg", "/businesses/second.jpeg", "/influencers/adrizzy.jpeg"],
     backdrop: "bg-[#fff4cc]",
@@ -65,7 +66,8 @@ const colorStories = [
   {
     eyebrow: "Flip the playbook",
     title: "Give everyday creators their first brand deal",
-    body: "Creators apply, shoot, and get paid. Small businesses walk away with authentic content under $500. Everyone ends up rooting for the same local wins.",
+    body:
+      "Creators apply, shoot, and get paid. Small businesses walk away with authentic content under $500. Everyone ends up rooting for the same local wins.",
     action: { label: "Build a board", href: "/collections" },
     collage: ["/influencers/me.jpg", "/businesses/first.jpeg", "/businesses/ninth.jpeg"],
     backdrop: "bg-[#c9f4ef]",
@@ -82,7 +84,9 @@ const proofPoints = [
 /* ---------- Hooks ---------- */
 function useInterval(callback: () => void, delay: number | null) {
   const saved = useRef(callback)
-  useEffect(() => { saved.current = callback }, [callback])
+  useEffect(() => {
+    saved.current = callback
+  }, [callback])
   useEffect(() => {
     if (delay == null) return
     const id = setInterval(() => saved.current(), delay)
@@ -90,108 +94,140 @@ function useInterval(callback: () => void, delay: number | null) {
   }, [delay])
 }
 
-/* ---------- Hero Carousel ---------- */
+/* =====================================================
+   HERO: Single‑flip implementation
+   -----------------------------------------------------
+   Fixes "double flip" by:
+   1) Animating ONLY an overlaying outgoing card.
+   2) Keeping base stack static (no re-keys) during the flip.
+   3) Updating index AFTER the outgoing animation ends.
+   ===================================================== */
 function HeroSlidesStacked() {
   const [index, setIndex] = useState(0)
   const [animDir, setAnimDir] = useState<Dir>("next")
-  const [animKey, setAnimKey] = useState(0)
-  const isAnimating = useRef(false)
+  const [isAnimating, setIsAnimating] = useState(false)
+  const [outgoing, setOutgoing] = useState<number | null>(null)
   const autoplayPaused = useRef(false)
-  const topCardRef = useRef<HTMLDivElement | null>(null)
 
+  const len = heroPins.length
+
+  // Compute current stack from the "settled" index only
   const order = useMemo(() => {
-    const top = index % heroPins.length
-    const mid = (index + 1) % heroPins.length
-    const back = (index + 2) % heroPins.length
+    const top = index % len
+    const mid = (index + 1) % len
+    const back = (index + 2) % len
     return [top, mid, back]
-  }, [index])
+  }, [index, len])
 
   const requestFlip = (dir: Dir) => {
-    if (isAnimating.current) return
-    isAnimating.current = true
+    if (isAnimating) return
     autoplayPaused.current = true
     setAnimDir(dir)
-    setAnimKey((k) => k + 1)
+    setOutgoing(index) // capture which image is leaving
+    setIsAnimating(true)
   }
 
+  // Autoplay
   useInterval(() => {
-    if (!isAnimating.current && !autoplayPaused.current) requestFlip("next")
+    if (!isAnimating && !autoplayPaused.current) requestFlip("next")
   }, INTERVAL_MS)
 
-  useEffect(() => {
-    const el = topCardRef.current
-    if (!el) return
-    const onEnd = (e: AnimationEvent) => {
-      if (!e.animationName.includes("topOut")) return
-      setIndex((i) => animDir === "next"
-        ? (i + 1) % heroPins.length
-        : (i - 1 + heroPins.length) % heroPins.length
-      )
-      isAnimating.current = false
-      setTimeout(() => { autoplayPaused.current = false }, 150)
-    }
-    el.addEventListener("animationend", onEnd)
-    return () => el.removeEventListener("animationend", onEnd)
-  }, [animKey, animDir])
+  const handleOutgoingEnd = () => {
+    // Advance the base stack AFTER the outgoing top finishes
+    setIndex((i) => (animDir === "next" ? (i + 1) % len : (i - 1 + len) % len))
+    setIsAnimating(false)
+    setOutgoing(null)
+    // Small grace period before autoplay resumes
+    setTimeout(() => (autoplayPaused.current = false), 150)
+  }
 
   return (
     <>
       <style jsx>{`
         @keyframes topOutNextFade {
-          0%   { transform: translate(0,0) rotate(-1deg) scale(1); opacity: 1; }
-          50%  { transform: translate(60px,-16px) rotate(7deg) scale(1.02); opacity: 0.6; }
+          0% { transform: translate(0,0) rotate(-1deg) scale(1); opacity: 1; }
+          60% { transform: translate(60px,-16px) rotate(7deg) scale(1.02); opacity: 0.6; }
           100% { transform: translate(120px,-28px) rotate(12deg) scale(0.95); opacity: 0; }
         }
         @keyframes topOutPrevFade {
-          0%   { transform: translate(0,0) rotate(-1deg) scale(1); opacity: 1; }
-          50%  { transform: translate(-60px,-16px) rotate(-7deg) scale(1.02); opacity: 0.6; }
+          0% { transform: translate(0,0) rotate(-1deg) scale(1); opacity: 1; }
+          60% { transform: translate(-60px,-16px) rotate(-7deg) scale(1.02); opacity: 0.6; }
           100% { transform: translate(-120px,-28px) rotate(-12deg) scale(0.95); opacity: 0; }
-        }
-        @keyframes rise {
-          0% { transform: translateY(6px) scale(0.98); }
-          100% { transform: translateY(0) scale(1); }
         }
       `}</style>
 
       <div className="relative h-[320px] sm:h-[380px] md:h-[440px] lg:h-[520px] select-none overflow-visible">
         <div className="absolute inset-0 flex items-center justify-center overflow-visible">
-          <CardLayer key={`back-${order[2]}-${animKey}`} img={heroPins[order[2]]} depth="back" dir={animDir} />
-          <CardLayer key={`mid-${order[1]}-${animKey}`} img={heroPins[order[1]]} depth="mid" dir={animDir} />
-          <CardLayer key={`top-${order[0]}-${animKey}`} img={heroPins[order[0]]} depth="top" dir={animDir} topRef={topCardRef} />
+          {/* Base stack (no animations). These do NOT re-key during a flip. */}
+          <StaticCard img={heroPins[order[2]]} depth="back" />
+          <StaticCard img={heroPins[order[1]]} depth="mid" />
+          <StaticCard img={heroPins[order[0]]} depth="top" />
+
+          {/* Outgoing overlay with one-time animation */}
+          {isAnimating && outgoing !== null && (
+            <AnimatedOutgoingCard
+              key={`out-${outgoing}-${animDir}`} // ensures fresh animation each flip
+              img={heroPins[outgoing]}
+              dir={animDir}
+              onEnd={handleOutgoingEnd}
+            />
+          )}
         </div>
       </div>
     </>
   )
 }
 
-function CardLayer({
+function StaticCard({
   img,
   depth,
-  dir,
-  topRef,
 }: {
   img: { src: string; alt: string }
   depth: "top" | "mid" | "back"
-  dir: Dir
-  topRef?: React.RefObject<HTMLDivElement>
 }) {
   const stylesByDepth: Record<typeof depth, string> = {
     back: "z-0 scale-[0.9] translate-y-6 -rotate-3 translate-x-3 opacity-100",
     mid: "z-10 scale-[0.96] -translate-y-1 rotate-2 -translate-x-2 opacity-100",
     top: "z-20 scale-100 -rotate-1 translate-x-1 opacity-100",
   }
+  const frame = "absolute w-[85%] sm:w-[80%] md:w-[78%] lg:w-[75%] aspect-[4/5] rounded-xl shadow-2xl ring-1 ring-black/10 bg-white overflow-hidden"
+  return (
+    <div className={`${frame} ${stylesByDepth[depth]}`}>
+      {/* Using native img for simpler animated layering */}
+      <img src={img.src} alt={img.alt} className="h-full w-full object-cover rounded-md" />
+    </div>
+  )
+}
 
-  const frame = "rounded-xl shadow-2xl ring-1 ring-black/10 bg-white overflow-hidden"
-  const topMove =
+function AnimatedOutgoingCard({
+  img,
+  dir,
+  onEnd,
+}: {
+  img: { src: string; alt: string }
+  dir: Dir
+  onEnd: () => void
+}) {
+  const frame =
+    "absolute w-[85%] sm:w-[80%] md:w-[78%] lg:w-[75%] aspect-[4/5] rounded-xl shadow-2xl ring-1 ring-black/10 bg-white overflow-hidden z-30 scale-100 -rotate-1 translate-x-1"
+
+  const anim =
     dir === "next"
       ? "animate-[topOutNextFade_520ms_ease-in_forwards]"
       : "animate-[topOutPrevFade_520ms_ease-in_forwards]"
-  const layerAnim = depth === "top" ? topMove : "animate-[rise_520ms_ease-out_forwards]"
 
   return (
     <div
-      ref={depth === "top" ? topRef : undefined}
-      className={`absolute w-[85%] sm:w-[80%] md:w-[78%] lg:w-[75%] aspect-[4/5] ${frame} ${stylesByDepth[depth]} ${layerAnim}`}
+      className={`${frame} ${anim}`}
+      onAnimationEnd={(e) => {
+        // Safety: only handle our topOut animations
+        if (
+          e.animationName.includes("topOutNextFade") ||
+          e.animationName.includes("topOutPrevFade")
+        ) {
+          onEnd()
+        }
+      }}
     >
       <img src={img.src} alt={img.alt} className="h-full w-full object-cover rounded-md" />
     </div>
@@ -201,7 +237,9 @@ function CardLayer({
 /* ---------- Main Page ---------- */
 export default function HomePage() {
   const [isLoaded, setIsLoaded] = useState(false)
-  useEffect(() => { setIsLoaded(true) }, [])
+  useEffect(() => {
+    setIsLoaded(true)
+  }, [])
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#fff7f8] via-white to-[#f0f6ff] text-slate-900">
@@ -213,7 +251,11 @@ export default function HomePage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-center">
             {/* Left */}
             <div>
-              <h1 className={`text-5xl md:text-6xl font-bold text-gray-900 mb-6 transition-all duration-1000 ${isLoaded ? "animate-fade-in-up" : "opacity-0"}`}>
+              <h1
+                className={`text-5xl md:text-6xl font-bold text-gray-900 mb-6 transition-all duration-1000 ${
+                  isLoaded ? "animate-fade-in-up" : "opacity-0"
+                }`}
+              >
                 Connect Local Businesses with
                 <span className="text-[#FF255A]"> Content Creators</span>
               </h1>
@@ -227,7 +269,11 @@ export default function HomePage() {
                 </div>
               </div>
               <div className="mt-8 flex gap-4">
-                <Button size="lg" className="bg-[#FF255A] hover:bg-[#e01f4e] transform hover:scale-105 transition-all duration-200" asChild>
+                <Button
+                  size="lg"
+                  className="bg-[#FF255A] hover:bg-[#e01f4e] transform hover:scale-105 transition-all duration-200"
+                  asChild
+                >
                   <Link href="/signup">Get Started</Link>
                 </Button>
               </div>
@@ -247,11 +293,16 @@ export default function HomePage() {
         <section className="rounded-[36px] border border-white/80 bg-white/70 px-6 py-12 shadow-[0_22px_70px_rgba(15,23,42,0.12)]">
           <div className="mx-auto flex max-w-4xl flex-col gap-6 text-center">
             <h2 className="text-3xl font-semibold text-slate-900 sm:text-4xl">Why the old playbook fails</h2>
-            <p className="text-sm text-slate-500">Consumers crave authenticity, small businesses lack budget, and new creators can't break into the club. BroadCast closes all three gaps.</p>
+            <p className="text-sm text-slate-500">
+              Consumers crave authenticity, small businesses lack budget, and new creators can't break into the club. BroadCast closes all three gaps.
+            </p>
           </div>
           <div className="mt-10 grid gap-6 sm:grid-cols-3">
             {proofPoints.map((point) => (
-              <article key={point.stat} className="rounded-[30px] bg-gradient-to-br from-white via-rose-50/50 to-white p-6 shadow-[0_18px_46px_rgba(244,63,94,0.15)]">
+              <article
+                key={point.stat}
+                className="rounded-[30px] bg-gradient-to-br from-white via-rose-50/50 to-white p-6 shadow-[0_18px_46px_rgba(244,63,94,0.15)]"
+              >
                 <p className="text-4xl font-semibold text-rose-500">{point.stat}</p>
                 <p className="mt-3 text-sm text-slate-600">{point.body}</p>
               </article>
@@ -262,7 +313,9 @@ export default function HomePage() {
         {/* Featured Boards */}
         <section className="rounded-[40px] bg-[#ffe2ec] px-6 py-14">
           <div className="mx-auto flex max-w-5xl flex-col gap-6 text-center">
-            <h2 className="text-3xl font-semibold tracking-tight text-rose-600 sm:text-4xl">Why this matters for creators and small businesses</h2>
+            <h2 className="text-3xl font-semibold tracking-tight text-rose-600 sm:text-4xl">
+              Why this matters for creators and small businesses
+            </h2>
             <p className="text-sm text-rose-600/80">
               Each board is a real example of everyday people teaming up with neighborhood brands to make content that really moves the needle.
             </p>
@@ -291,7 +344,9 @@ export default function HomePage() {
           >
             <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
               <div className="space-y-4">
-                <span className={`text-sm font-semibold uppercase tracking-[0.28em] ${story.accent}`}>{story.eyebrow}</span>
+                <span className={`text-sm font-semibold uppercase tracking-[0.28em] ${story.accent}`}>
+                  {story.eyebrow}
+                </span>
                 <h2 className="text-3xl font-semibold text-slate-900 sm:text-4xl">{story.title}</h2>
                 <p className="max-w-lg text-sm text-slate-600">{story.body}</p>
                 <Button
@@ -306,7 +361,9 @@ export default function HomePage() {
                 {story.collage.map((image, index) => (
                   <div
                     key={image}
-                    className={`relative overflow-hidden rounded-[40px] border border-white/70 shadow-[0_20px_60px_rgba(15,23,42,0.15)] ${index % 2 === 0 ? "translate-y-6" : ""}`}
+                    className={`relative overflow-hidden rounded-[40px] border border-white/70 shadow-[0_20px_60px_rgba(15,23,42,0.15)] ${
+                      index % 2 === 0 ? "translate-y-6" : ""
+                    }`}
                   >
                     <Image src={image} alt="Story collage" width={420} height={320} className="h-56 w-full object-cover" />
                   </div>
@@ -321,10 +378,18 @@ export default function HomePage() {
       <footer className="border-t border-white/70 bg-white/80 py-16">
         <div className="mx-auto flex w-full max-w-6xl flex-col gap-10 px-4 text-center text-sm text-slate-500">
           <div className="flex flex-wrap justify-center gap-4 font-semibold text-slate-600">
-            <Link href="/help" className="hover:text-rose-500">Help</Link>
-            <Link href="/privacy" className="hover:text-rose-500">Privacy</Link>
-            <Link href="/terms" className="hover:text-rose-500">Terms</Link>
-            <Link href="/contact" className="hover:text-rose-500">Contact</Link>
+            <Link href="/help" className="hover:text-rose-500">
+              Help
+            </Link>
+            <Link href="/privacy" className="hover:text-rose-500">
+              Privacy
+            </Link>
+            <Link href="/terms" className="hover:text-rose-500">
+              Terms
+            </Link>
+            <Link href="/contact" className="hover:text-rose-500">
+              Contact
+            </Link>
           </div>
           <p>© {new Date().getFullYear()} BroadCast — small creators, big neighborhood impact.</p>
         </div>
