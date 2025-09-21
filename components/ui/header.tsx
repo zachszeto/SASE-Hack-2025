@@ -18,8 +18,8 @@ export default function Header() {
               height={20}
               className="w-12 h-12 invert"
             />
+            <span className="text-xl font-bold text-gray-900">BroadCast</span>
           </Link>
-          <span className="text-xl font-bold text-gray-900">BroadCast</span>
         </div>
 
         {/* Nav */}
