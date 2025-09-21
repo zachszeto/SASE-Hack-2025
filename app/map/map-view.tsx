@@ -207,17 +207,7 @@ const businesses: Business[] = [
     imageUrl: "/businesses/ninth.jpeg",
     tags: ["Arts & Culture", "Events"],
     pinSize: "lg",
-  },
-  {
-    id: "biz-brighton-bloom",
-    name: "Brighton Bloom",
-    category: "Plant Shop",
-    location: "Brighton",
-    position: [42.3487, -71.1521],
-    imageUrl: "/businesses/tenth.jpeg",
-    tags: ["Lifestyle", "Home"],
-    pinSize: "md",
-  },
+  }
 ]
 
 const isLoggedIn = false
