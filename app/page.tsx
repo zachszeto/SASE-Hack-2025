@@ -33,19 +33,19 @@ const featuredBoards = [
   {
     title: "Neighborhood fashion drops",
     subtitle: "Boutiques, thrift hauls, and campus lookbooks from micro-creators",
-    image: "/influencers/sherry.png",
+    image: "/thrift.jpg",
     accent: "from-orange-400/10 via-amber-300/10 to-white",
   },
   {
-    title: "Night bites trail",
+    title: "Late Night Bites",
     subtitle: "Tacos, late-night slices, and hidden speakeasies captured by locals",
-    image: "/businesses/seventh.png",
+    image: "/latenight.jpg",
     accent: "from-purple-400/10 via-sky-300/10 to-white",
   },
   {
     title: "Wellness pop-ups",
     subtitle: "Pilates in the park, juice collabs, and feel-good routines",
-    image: "/influencers/jasmine.jpg",
+    image: "/wellness.jpg",
     accent: "from-emerald-400/10 via-teal-300/10 to-white",
   },
 ]
@@ -57,7 +57,7 @@ const colorStories = [
     body:
       "Premium subscriptions, ad blockers, and templated influencer spots make old-school marketing invisible. We let corner shops tap the voices classmates, coworkers, and neighbors already follow.",
     action: { label: "See it on the map", href: "/map" },
-    collage: ["/businesses/fourth.jpeg", "/businesses/second.jpeg", "/influencers/adrizzy.png"],
+    collage: ["/businesses/fourth.jpeg", "/Keonte-Henson.jpg", "/influencers/adrizzy.png"],
     backdrop: "bg-[#fff4cc]",
     accent: "text-[#b73c19]",
   },
@@ -92,14 +92,6 @@ function useInterval(callback: () => void, delay: number | null) {
   }, [delay])
 }
 
-/* =====================================================
-   HERO: Single‑flip implementation
-   -----------------------------------------------------
-   Fixes "double flip" by:
-   1) Animating ONLY an overlaying outgoing card.
-   2) Keeping base stack static (no re-keys) during the flip.
-   3) Updating index AFTER the outgoing animation ends.
-   ===================================================== */
 function HeroSlidesStacked() {
   const [index, setIndex] = useState(0)
   const [animDir, setAnimDir] = useState<Dir>("next")
