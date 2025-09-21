@@ -41,9 +41,9 @@ const mockCreatorData = {
   totalEarnings: 3200,
   responseRate: 98,
   followers: {
-    instagram: "12.5K",
-    tiktok: "8.2K",
-    youtube: "3.1K",
+    instagram: "1.5K",
+    tiktok: "1.2K",
+    youtube: "1.1K",
   },
   specialties: ["Food Photography", "Lifestyle Content", "Instagram Reels", "Product Reviews"],
   portfolio: [
