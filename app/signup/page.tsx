@@ -181,7 +181,10 @@ export default function SignupPage() {
                     </Label>
                   </div>
 
-                  <Button type="submit" className="w-full bg-gradient-to-r from-blue-600 to-blue-700">
+                    <Button
+                    type="submit"
+                      className="w-full bg-[#FF255A] hover:bg-[#e01f4e] text-white"
+                    >
                     Create Account
                   </Button>
                 </form>

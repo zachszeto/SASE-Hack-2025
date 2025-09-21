@@ -7,8 +7,8 @@ import { User } from "lucide-react"
 
 export default function Header() {
   return (
-    <header className="border-b bg-white/80 backdrop-blur-sm sticky top-0 z-50">
-      <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+    <header className="sticky top-0 z-50 border-b border-white/60 bg-white/90 backdrop-blur">
+      <div className="container mx-auto flex items-center justify-between px-4 py-4">
         {/* Brand (clickable logo → home) */}
         <div className="flex items-center gap-2">
           <Link href="/" aria-label="Go to home" className="inline-flex items-center">
@@ -17,31 +17,34 @@ export default function Header() {
               alt="BroadCast Logo"
               width={20}
               height={20}
-              className="w-12 h-12 invert"
+              className="h-10 w-10 invert"
             />
-            <span className="text-xl font-bold text-gray-900 ml-2">BroadCast</span>
+            <span className="ml-2 text-lg font-semibold tracking-tight text-slate-900">BroadCast</span>
           </Link>
         </div>
 
         {/* Nav */}
-        <nav className="hidden md:flex items-center gap-6">
+        <nav className="hidden items-center gap-4 text-sm font-medium text-slate-500 md:flex">
 
           {/* Map button (same style as nav items) */}
-          <Link href="/map" className="text-gray-600 hover:text-blue-600 transition-colors">
+          <Link
+            href="/map"
+            className="rounded-full px-4 py-2 transition-colors hover:bg-rose-50 hover:text-rose-500"
+          >
             Discover
           </Link>
 
           {/* For Businesses */}
           <div className="relative group">
-            <span className="text-gray-600 group-hover:text-blue-600 transition-colors inline-flex items-center cursor-default select-none">
+            <span className="inline-flex cursor-default select-none items-center rounded-full px-4 py-2 text-slate-500 transition-colors group-hover:bg-rose-50 group-hover:text-rose-500">
               For Businesses
-              <span className="ml-1 text-gray-400 group-hover:text-blue-600 transition-colors">▾</span>
+              <span className="ml-1 text-slate-400 transition-colors group-hover:text-rose-400">▾</span>
             </span>
 
             <div className="absolute left-0">
               <div className="h-3" />
               <div
-                className="w-56 rounded-lg border border-gray-200 bg-white backdrop-blur-sm shadow-lg opacity-0 translate-y-1 transition-all duration-150
+                className="w-56 rounded-2xl border border-white/80 bg-white/95 shadow-[0_18px_40px_rgba(15,23,42,0.12)] backdrop-blur opacity-0 translate-y-1 transition-all duration-150
                            pointer-events-none
                            group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto"
                 role="menu"
@@ -51,7 +54,7 @@ export default function Header() {
                   <li>
                     <Link
                       href="/business/dashboard"
-                      className="block px-4 py-2 text-gray-700 hover:bg-gray-50/60 hover:text-blue-600 transition-colors"
+                      className="block px-4 py-2 text-sm text-slate-600 transition-colors hover:bg-rose-50 hover:text-rose-500"
                       role="menuitem"
                     >
                       Business Dashboard
@@ -60,7 +63,7 @@ export default function Header() {
                   <li>
                     <Link
                       href="/creators"
-                      className="block px-4 py-2 text-gray-700 hover:bg-gray-50/60 hover:text-blue-600 transition-colors"
+                      className="block px-4 py-2 text-sm text-slate-600 transition-colors hover:bg-rose-50 hover:text-rose-500"
                       role="menuitem"
                     >
                       Browse Creators
@@ -69,7 +72,7 @@ export default function Header() {
                   <li>
                     <Link
                       href="/business"
-                      className="block px-4 py-2 text-gray-700 hover:bg-gray-50/60 hover:text-blue-600 transition-colors"
+                      className="block px-4 py-2 text-sm text-slate-600 transition-colors hover:bg-rose-50 hover:text-rose-500"
                       role="menuitem"
                     >
                       Post a Gig
@@ -82,15 +85,15 @@ export default function Header() {
 
           {/* For Creators */}
           <div className="relative group">
-            <span className="text-gray-600 group-hover:text-blue-600 transition-colors inline-flex items-center cursor-default select-none">
+            <span className="inline-flex cursor-default select-none items-center rounded-full px-4 py-2 text-slate-500 transition-colors group-hover:bg-rose-50 group-hover:text-rose-500">
               For Creators
-              <span className="ml-1 text-gray-400 group-hover:text-blue-600 transition-colors">▾</span>
+              <span className="ml-1 text-slate-400 transition-colors group-hover:text-rose-400">▾</span>
             </span>
 
             <div className="absolute left-0">
               <div className="h-3" />
               <div
-                className="w-56 rounded-lg border border-gray-200 bg-white backdrop-blur-sm shadow-lg opacity-0 translate-y-1 transition-all duration-150
+                className="w-56 rounded-2xl border border-white/80 bg-white/95 shadow-[0_18px_40px_rgba(15,23,42,0.12)] backdrop-blur opacity-0 translate-y-1 transition-all duration-150
                            pointer-events-none
                            group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto"
                 role="menu"
@@ -100,7 +103,7 @@ export default function Header() {
                   <li>
                     <Link
                       href="/creators/profile"
-                      className="block px-4 py-2 text-gray-700 hover:bg-gray-50/60 hover:text-blue-600 transition-colors"
+                      className="block px-4 py-2 text-sm text-slate-600 transition-colors hover:bg-rose-50 hover:text-rose-500"
                       role="menuitem"
                     >
                       Creator Profile
@@ -109,7 +112,7 @@ export default function Header() {
                   <li>
                     <Link
                       href="/marketplace"
-                      className="block px-4 py-2 text-gray-700 hover:bg-gray-50/60 hover:text-blue-600 transition-colors"
+                      className="block px-4 py-2 text-sm text-slate-600 transition-colors hover:bg-rose-50 hover:text-rose-500"
                       role="menuitem"
                     >
                       Browse Gigs
@@ -126,9 +129,9 @@ export default function Header() {
           <Link
             href="/creators/profile"
             aria-label="Open profile"
-            className="inline-flex h-9 w-9 items-center justify-center rounded-full ring-2 ring-black/10 hover:ring-black/30 transition"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/80 bg-white/90 text-rose-400 shadow-sm transition hover:border-rose-200 hover:text-rose-500"
           >
-            <User className="h-5 w-5 text-black" />
+            <User className="h-4 w-4" />
           </Link>
         </div>
       </div>
