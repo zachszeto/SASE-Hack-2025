@@ -281,9 +281,10 @@ export default function HomePage() {
 type Dir = "next" | "prev"
 
 const HERO_IMAGES = [
-  { src: "/User1.png", alt: "Local coffee shop collab" },
-  { src: "/User2.png", alt: "Fitness studio content shoot" },
-  { src: "/User3.png", alt: "Boutique fashion unboxing" },
+  { src: "/User1.png", alt: "Brandon Yeu collab" },
+  { src: "/User2.png", alt: "Zachary Szeto collab" },
+  { src: "/User3.png", alt: "Long Nguyen collab" },
+  { src: "/User4.png", alt: "Long Nguyen collab" },
 ]
 
 const INTERVAL_MS = 4500

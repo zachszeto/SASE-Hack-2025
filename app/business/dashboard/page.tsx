@@ -36,16 +36,6 @@ const mockBusinessData = {
 
 const mockActiveGigs = [
   {
-    id: 999,
-    title: "TikTok for STEM Connect Career Fair",
-    budget: 400,
-    applications: 0,
-    status: "active",
-    posted: "Just now",
-    deadline: "In 3 days",
-    category: "Tech",
-  },
-  {
     id: 1,
     title: "Instagram Reel for Tea Shop",
     budget: 150,
@@ -75,13 +65,23 @@ const mockActiveGigs = [
     deadline: "In 1 week",
     category: "Food & Drink",
   },
+  {
+    id: 999,
+    title: "TikTok for STEM Connect Career Fair",
+    budget: 400,
+    applications: 0,
+    status: "active",
+    posted: "Just now",
+    deadline: "In 3 days",
+    category: "Tech",
+  },
 ]
 
 const mockApplications = [
   {
     id: 1,
     gigId: 1,
-    gigTitle: "Instagram Reel for Coffee Shop",
+    gigTitle: "Instagram Reel for Tea Shop",
     creator: {
       name: "Sarah Johnson",
       avatar: "/placeholder.svg?height=40&width=40",
@@ -221,7 +221,7 @@ export default function BusinessDashboard() {
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <Button className="h-20 flex flex-col gap-2" asChild>
-                    <Link href="/business/post-gig">
+                    <Link href="/business">
                       <Plus className="w-6 h-6" />
                       Post New Gig
                     </Link>
