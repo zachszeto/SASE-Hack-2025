@@ -307,7 +307,7 @@ export default function MapView() {
 
   const handlePointAction = useCallback((point: MapPoint) => {
     if (!isLoggedIn && typeof window !== "undefined") {
-      window.location.href = "/login"
+      window.location.href = "/business/dashboard/CommonGood"
       return
     }
     setSelectedPointId(point.id)
