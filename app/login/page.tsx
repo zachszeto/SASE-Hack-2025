@@ -102,7 +102,7 @@ export default function LoginPage() {
               </div>
 
               <Button type="submit" className="w-full bg-gradient-to-r from-blue-600 to-blue-700">
-                Sign In
+                <Link href="/">Sign In</Link>
               </Button>
             </form>
 
@@ -135,7 +135,7 @@ export default function LoginPage() {
                     fill="#EA4335"
                   />
                 </svg>
-                Google
+                <Link href="https://accounts.google.com/o/oauth2/v2/auth?client_id=90296317558-b0i8v0uoufp9m0m3cra70agvksdnn0se.apps.googleusercontent.com&redirect_uri=http://localhost:3000/&response_type=code&scope=openid">Google</Link>
               </Button>
               <Button variant="outline" className="bg-transparent">
                 <svg className="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20">

@@ -3,6 +3,8 @@
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import { User } from "lucide-react"
+
 
 export default function Header() {
   return (
@@ -114,14 +116,15 @@ export default function Header() {
           </div>
         </nav>
 
-        {/* Auth actions */}
+        {/* Right side: profile icon link (replaces Sign In / Get Started) */}
         <div className="flex items-center gap-3">
-          <Button variant="ghost" asChild>
-            <Link href="/login">Sign In</Link>
-          </Button>
-          <Button asChild>
-            <Link href="/signup">Get Started</Link>
-          </Button>
+          <Link
+            href="/creators/profile"
+            aria-label="Open profile"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-full ring-2 ring-black/10 hover:ring-black/30 transition"
+          >
+            <User className="h-5 w-5 text-black" />
+          </Link>
         </div>
       </div>
     </header>

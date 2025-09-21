@@ -29,9 +29,9 @@ import Header from "@/components/ui/header"
 
 // Mock data for creator profile
 const mockCreatorData = {
-  name: "Sarah Johnson",
-  username: "@sarahjohnson",
-  location: "Seattle, WA",
+  name: "Jasmine Huang",
+  username: "@jasminehuang",
+  location: "Waltham, MA",
   avatar: "/placeholder.svg?height=120&width=120",
   coverImage: "/creator-cover-photo.jpg",
   bio: "Food & lifestyle content creator passionate about showcasing local businesses. I love creating authentic, engaging content that tells your brand's story.",
@@ -51,7 +51,7 @@ const mockCreatorData = {
       id: 1,
       title: "Coffee Shop Reel",
       type: "video",
-      thumbnail: "/coffee-shop-reel.jpg",
+      thumbnail: "/CoffeeShop.webp",
       platform: "Instagram",
       engagement: "2.1K likes",
     },
@@ -85,8 +85,8 @@ const mockCreatorData = {
 const mockApplications = [
   {
     id: 1,
-    gigTitle: "Instagram Reel for Coffee Shop",
-    business: "Brew & Bean Co.",
+    gigTitle: "Instagram Reel for Mexican Restaurant",
+    business: "Plazita Mexico Tacos",
     budget: 150,
     status: "pending",
     appliedDate: "2 days ago",
@@ -95,7 +95,7 @@ const mockApplications = [
   {
     id: 2,
     gigTitle: "Product Photos for Bakery",
-    business: "Golden Gate Bakery",
+    business: "Enzina Bakery",
     budget: 300,
     status: "accepted",
     appliedDate: "1 week ago",
@@ -115,28 +115,28 @@ const mockApplications = [
 const mockReviews = [
   {
     id: 1,
-    business: "Brew & Bean Co.",
+    business: "The Fika Spot",
     rating: 5,
     review:
-      "Sarah created an amazing reel that perfectly captured our brand vibe. The content was delivered on time and exceeded our expectations!",
+      "Jasmine created an amazing reel that perfectly captured our brand vibe. The content was delivered on time and exceeded our expectations!",
     date: "1 week ago",
-    gigTitle: "Instagram Reel for Coffee Shop",
+    gigTitle: "Instagram Reel for The Fika Spot",
   },
   {
     id: 2,
-    business: "Golden Gate Bakery",
+    business: "Kairo's Cake & Bakery",
     rating: 5,
     review:
-      "Professional, creative, and easy to work with. The photos Sarah took of our pastries were absolutely stunning and really boosted our social media engagement.",
+      "Professional, creative, and easy to work with. The photos Jasmine took of our pastries were absolutely stunning and really boosted our social media engagement.",
     date: "2 weeks ago",
     gigTitle: "Product Photography Session",
   },
   {
     id: 3,
-    business: "Style Studio",
+    business: "Platinum Studio",
     rating: 4,
     review:
-      "Great work on the TikTok content! Sarah understood our brand aesthetic and created content that resonated with our target audience.",
+      "Great work on the TikTok content! Jasmine understood our brand aesthetic and created content that resonated with our target audience.",
     date: "3 weeks ago",
     gigTitle: "TikTok Content Creation",
   },
@@ -155,7 +155,7 @@ export default function CreatorProfile() {
           <div
             className="h-48 bg-gradient-to-r from-blue-400 to-purple-500 relative"
             style={{
-              backgroundImage: `url(${mockCreatorData.coverImage})`,
+              backgroundImage: 'url(/brandeis.jpg)',
               backgroundSize: "cover",
               backgroundPosition: "center",
             }}
@@ -172,9 +172,10 @@ export default function CreatorProfile() {
             <div className="flex items-start gap-6">
               <div className="relative -mt-16">
                 <Avatar className="w-24 h-24 border-4 border-white">
-                  <AvatarImage src={mockCreatorData.avatar || "/placeholder.svg"} />
+                  <AvatarImage src="/profileImage.png" />
                   <AvatarFallback className="text-2xl">SJ</AvatarFallback>
                 </Avatar>
+
                 <Button size="sm" variant="secondary" className="absolute -bottom-2 -right-2 w-8 h-8 p-0 rounded-full">
                   <Edit className="w-3 h-3" />
                 </Button>
@@ -198,27 +199,48 @@ export default function CreatorProfile() {
 
                 <p className="text-gray-700 mt-4 max-w-2xl">{mockCreatorData.bio}</p>
 
-                {/* Social Links */}
+                {/* Social Links (clickable) */}
                 <div className="flex items-center gap-4 mt-4">
-                  <div className="flex items-center gap-1">
+                  <a
+                    href={"https://www.instagram.com/jasminesydneyhuang?igsh=MWFrNTdqeTZ0MDdxdA%3D%3D&utm_source=qr"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Open Instagram profile"
+                    className="inline-flex items-center gap-1 rounded-md px-2 py-1 hover:bg-gray-100 transition"
+                  >
                     <Instagram className="w-4 h-4 text-pink-600" />
                     <span className="text-sm font-medium">{mockCreatorData.followers.instagram}</span>
-                  </div>
-                  <div className="flex items-center gap-1">
+                  </a>
+
+                  <a
+                    href={"https://www.tiktok.com/@jasminehuang976?_t=ZP-8ztqkxkDAtD&_r=1"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Open TikTok profile"
+                    className="inline-flex items-center gap-1 rounded-md px-2 py-1 hover:bg-gray-100 transition"
+                  >
                     <Image
                       src="/tiktok.svg"
                       alt="TikTok Logo"
-                      width={16} // 4 * 4px = 16px to match previous size
+                      width={16}
                       height={16}
                       className="w-4 h-4"
                     />
                     <span className="text-sm font-medium">{mockCreatorData.followers.tiktok}</span>
-                  </div>
-                  <div className="flex items-center gap-1">
+                  </a>
+
+                  <a
+                    href={"https://www.youtube.com/@jasminehuang894"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Open YouTube channel"
+                    className="inline-flex items-center gap-1 rounded-md px-2 py-1 hover:bg-gray-100 transition"
+                  >
                     <Youtube className="w-4 h-4 text-red-600" />
                     <span className="text-sm font-medium">{mockCreatorData.followers.youtube}</span>
-                  </div>
+                  </a>
                 </div>
+
 
                 {/* Specialties */}
                 <div className="flex flex-wrap gap-2 mt-4">
