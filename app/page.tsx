@@ -55,7 +55,7 @@ export default function HomePage() {
               {/* Single CTA */}
               <div className={`mt-8 flex gap-4 transition-all duration-1000 ${isLoaded ? "animate-fade-in-up [animation-delay:600ms]" : "initial-hidden"}`}>
                 <Button size="lg" className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 transform hover:scale-105 transition-all duration-200" asChild>
-                  <Link href="/map">Get Started</Link>
+                  <Link href="/signup">Get Started</Link>
                 </Button>
               </div>
             </div>
@@ -347,7 +347,7 @@ function HeroSlidesStacked() {
   return (
     <div className="relative h-[320px] sm:h-[380px] md:h-[440px] lg:h-[520px] select-none overflow-visible" aria-roledescription="carousel" aria-live="polite">
       {/* Minimal arrows */}
-      <button
+      {/* <button
         aria-label="Previous"
         className="absolute left-2 top-1/2 -translate-y-1/2 z-30 h-9 w-9 rounded-full bg-black/35 hover:bg-black/50 text-white grid place-items-center"
         onClick={() => requestFlip("prev")}
@@ -360,7 +360,7 @@ function HeroSlidesStacked() {
         onClick={() => requestFlip("next")}
       >
         ›
-      </button>
+      </button> */}
 
       <div className="absolute inset-0 flex items-center justify-center overflow-visible">
         <CardLayer key={`back-${order[2]}-${animKey}`} img={HERO_IMAGES[order[2]]} depth="back" dir={animDir} />
