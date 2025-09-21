@@ -267,18 +267,17 @@ const mockGigs = [
   },
 ]
 
-// Extra hidden gig
 const extraGig = {
   id: 999,
-  title: "Special Campaign Video",
-  location: "San Francisco, CA",
+  title: "TikTok for STEM Connect Career Fair",
+  location: "Waltham, MA",
   category: "Tech",
   description:
     "Participate in an exclusive product launch video campaign. Limited spots available for talented content creators.",
-  businessRating: 5.0,
+  businessRating: 4.9,
   reward: "$400",
   type: "Cash",
   deliverables: "1 Video",
-  timeline: "1 week",
+  timeline: "3 days",
   urgent: true,
 }
