@@ -25,6 +25,12 @@ export default function Header() {
 
         {/* Nav */}
         <nav className="hidden md:flex items-center gap-6">
+
+          {/* Map button (same style as nav items) */}
+          <Link href="/map" className="text-gray-600 hover:text-blue-600 transition-colors">
+            Discover
+          </Link>
+
           {/* For Businesses */}
           <div className="relative group">
             <span className="text-gray-600 group-hover:text-blue-600 transition-colors inline-flex items-center cursor-default select-none">
@@ -113,11 +119,6 @@ export default function Header() {
               </div>
             </div>
           </div>
-
-          {/* Map button (same style as nav items) */}
-          <Link href="/map" className="text-gray-600 hover:text-blue-600 transition-colors">
-            Map
-          </Link>
         </nav>
 
         {/* Right side: profile icon link */}
