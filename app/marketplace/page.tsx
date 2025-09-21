@@ -9,11 +9,11 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { MapPin, Star, Search, Filter, Heart, Share2 } from "lucide-react"
 import Header from "@/components/ui/header"
 
-
 export default function MarketplacePage() {
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedCategory, setSelectedCategory] = useState("all")
   const [selectedLocation, setSelectedLocation] = useState("all")
+  const [showExtraGig, setShowExtraGig] = useState(false)
 
   const filteredGigs = mockGigs.filter((gig) => {
     const matchesSearch =
@@ -21,13 +21,15 @@ export default function MarketplacePage() {
       gig.description.toLowerCase().includes(searchTerm.toLowerCase())
     const matchesCategory = selectedCategory === "all" || gig.category === selectedCategory
     const matchesLocation = selectedLocation === "all" || gig.location.includes(selectedLocation)
-
     return matchesSearch && matchesCategory && matchesLocation
   })
 
+  // Include extra gig if button clicked
+  const displayedGigs = showExtraGig ? [...filteredGigs, extraGig] : filteredGigs
+
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header/>
+      <Header />
 
       <div className="container mx-auto px-4 py-8">
         {/* Page Header */}
@@ -85,7 +87,7 @@ export default function MarketplacePage() {
         {/* Results */}
         <div className="flex items-center justify-between mb-6">
           <p className="text-gray-600">
-            Showing {filteredGigs.length} of {mockGigs.length} opportunities
+            Showing {displayedGigs.length} of {mockGigs.length + (showExtraGig ? 1 : 0)} opportunities
           </p>
           <Select defaultValue="newest">
             <SelectTrigger className="w-48">
@@ -102,7 +104,7 @@ export default function MarketplacePage() {
 
         {/* Gig Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredGigs.map((gig) => (
+          {displayedGigs.map((gig) => (
             <Card key={gig.id} className="hover:shadow-lg transition-shadow group">
               <CardHeader>
                 <div className="flex items-start justify-between">
@@ -165,16 +167,19 @@ export default function MarketplacePage() {
         </div>
 
         {/* Load More */}
-        <div className="text-center mt-12">
-          <Button variant="outline" size="lg">
-            Load More Opportunities
-          </Button>
-        </div>
+        {!showExtraGig && (
+          <div className="text-center mt-12">
+            <Button variant="outline" size="lg" onClick={() => setShowExtraGig(true)}>
+              Load More Opportunities
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   )
 }
 
+// Existing mock gigs
 const mockGigs = [
   {
     id: 1,
@@ -261,3 +266,19 @@ const mockGigs = [
     urgent: false,
   },
 ]
+
+// Extra hidden gig
+const extraGig = {
+  id: 999,
+  title: "Special Campaign Video",
+  location: "San Francisco, CA",
+  category: "Tech",
+  description:
+    "Participate in an exclusive product launch video campaign. Limited spots available for talented content creators.",
+  businessRating: 5.0,
+  reward: "$400",
+  type: "Cash",
+  deliverables: "1 Video",
+  timeline: "1 week",
+  urgent: true,
+}
