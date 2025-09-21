@@ -5,7 +5,6 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { User } from "lucide-react"
 
-
 export default function Header() {
   return (
     <header className="border-b bg-white/80 backdrop-blur-sm sticky top-0 z-50">
@@ -20,7 +19,7 @@ export default function Header() {
               height={20}
               className="w-12 h-12 invert"
             />
-            <span className="text-xl font-bold text-gray-900">BroadCast</span>
+            <span className="text-xl font-bold text-gray-900 ml-2">BroadCast</span>
           </Link>
         </div>
 
@@ -43,7 +42,7 @@ export default function Header() {
                 aria-label="For Businesses"
               >
                 <ul className="py-2">
-                <li>
+                  <li>
                     <Link
                       href="/business/dashboard"
                       className="block px-4 py-2 text-gray-700 hover:bg-gray-50/60 hover:text-blue-600 transition-colors"
@@ -114,9 +113,14 @@ export default function Header() {
               </div>
             </div>
           </div>
+
+          {/* Map button (same style as nav items) */}
+          <Link href="/map" className="text-gray-600 hover:text-blue-600 transition-colors">
+            Map
+          </Link>
         </nav>
 
-        {/* Right side: profile icon link (replaces Sign In / Get Started) */}
+        {/* Right side: profile icon link */}
         <div className="flex items-center gap-3">
           <Link
             href="/creators/profile"
