@@ -24,8 +24,8 @@ import Link from "next/link"
 
 // Mock data for business dashboard
 const mockBusinessData = {
-  name: "Brew & Bean Co.",
-  location: "Downtown Seattle",
+  name: "Jasmine Tea Shop",
+  location: "Waltham, MA",
   rating: 4.9,
   totalGigs: 12,
   activeGigs: 3,
@@ -36,8 +36,18 @@ const mockBusinessData = {
 
 const mockActiveGigs = [
   {
+    id: 999,
+    title: "TikTok for STEM Connect Career Fair",
+    budget: 400,
+    applications: 0,
+    status: "active",
+    posted: "Just now",
+    deadline: "In 3 days",
+    category: "Tech",
+  },
+  {
     id: 1,
-    title: "Instagram Reel for Coffee Shop",
+    title: "Instagram Reel for Tea Shop",
     budget: 150,
     applications: 8,
     status: "active",
@@ -87,7 +97,7 @@ const mockApplications = [
   {
     id: 2,
     gigId: 1,
-    gigTitle: "Instagram Reel for Coffee Shop",
+    gigTitle: "Instagram Reel for Tea Shop",
     creator: {
       name: "Mike Chen",
       avatar: "/placeholder.svg?height=40&width=40",
@@ -96,7 +106,7 @@ const mockApplications = [
       specialties: ["Food Photography", "Reels"],
     },
     proposal:
-      "Hi! I'm a local food content creator and would love to feature your coffee shop. Check out my portfolio for similar work.",
+      "Hi! I'm a local food content creator and would love to feature your tea shop. Check out my portfolio for similar work.",
     appliedDate: "2 days ago",
     status: "pending",
   },
@@ -130,7 +140,7 @@ export default function BusinessDashboard() {
           <div className="flex items-start justify-between">
             <div className="flex items-center gap-4">
               <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xl">BC</span>
+                <span className="text-white font-bold text-xl">JT</span>
               </div>
               <div>
                 <h1 className="text-2xl font-bold text-gray-900">{mockBusinessData.name}</h1>
@@ -217,7 +227,7 @@ export default function BusinessDashboard() {
                     </Link>
                   </Button>
                   <Button variant="outline" className="h-20 flex flex-col gap-2 bg-transparent" asChild>
-                    <Link href="/marketplace">
+                    <Link href="/creators">
                       <Users className="w-6 h-6" />
                       Browse Creators
                     </Link>
@@ -244,7 +254,7 @@ export default function BusinessDashboard() {
                     <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
                     <div className="flex-1">
                       <p className="text-sm font-medium">New application received</p>
-                      <p className="text-xs text-gray-600">Sarah Johnson applied to "Instagram Reel for Coffee Shop"</p>
+                      <p className="text-xs text-gray-600">Sarah Johnson applied to "Instagram Reel for Tea Shop"</p>
                     </div>
                     <span className="text-xs text-gray-500">2 hours ago</span>
                   </div>
@@ -252,7 +262,7 @@ export default function BusinessDashboard() {
                     <div className="w-2 h-2 bg-green-600 rounded-full"></div>
                     <div className="flex-1">
                       <p className="text-sm font-medium">Gig completed</p>
-                      <p className="text-xs text-gray-600">Emma Rodriguez completed "Product Photos for New Menu"</p>
+                      <p className="text-xs text-gray-600">Emma Rodriguez completed "Product Photos for New Dessert"</p>
                     </div>
                     <span className="text-xs text-gray-500">1 day ago</span>
                   </div>
@@ -273,7 +283,7 @@ export default function BusinessDashboard() {
             <div className="flex items-center justify-between">
               <h2 className="text-2xl font-bold">My Gigs</h2>
               <Button asChild>
-                <Link href="/business/post-gig">
+                <Link href="/business">
                   <Plus className="w-4 h-4 mr-2" />
                   Post New Gig
                 </Link>

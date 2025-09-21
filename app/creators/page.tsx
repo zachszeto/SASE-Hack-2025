@@ -198,14 +198,14 @@ export default function CreatorsPage() {
 const mockCreators = [
   {
     id: 1,
-    name: "Sarah Johnson",
-    location: "Seattle, WA",
+    name: "ses-Amy-oil",
+    location: "Boston, MA",
     bio: "Food & lifestyle content creator passionate about showcasing local businesses and authentic experiences.",
     categories: ["Food & Drink", "Lifestyle"],
-    followers: "15.2K",
+    followers: "16.9K",
     rating: 4.9,
     collaborations: 47,
-    avatar: "/young-woman-food-blogger.jpg",
+    avatar: "/influencers/sesamyoilpfp.jpg",
     socialLinks: {
       instagram: true,
       youtube: true,
